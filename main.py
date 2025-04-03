@@ -23,13 +23,48 @@ class Monstro:
             return "Forte"
         else:
             return "Pânico"
-        
+
+class ElementoMonstro:
+    """
+    Classe que representa um elemento da lista de monstros.
+    Cada elemento contém um monstro e uma referência para o próximo elemento.
+    """
+    def __init__(self, monstro):
+        self.monstro = monstro  # Objeto da classe Monstro
+        self.proximo = None  # Ponteiro para o próximo elemento da lista
+
 class ListaLinear:
     def __init__(self):
-        print("Inserir Função")
+        self.inicio = None  # Inicializa a lista como vazia
+        self.tamanho = 0  # Define o tamanho inicial como zero
         
     def adicionar_monstro(self, nome, idade, origem, nivelSusto):
-        print("Inserir Função")
+        """
+        Adiciona um novo monstro ao final da lista.
+        """
+        novo_monstro = Monstro(nome, idade, origem, nivelSusto)  # Cria o objeto Monstro
+        novo_elemento = ElementoMonstro(novo_monstro)  # Cria um elemento dentro da lista armário
+        
+        if self.inicio is None:
+            # Se a lista estiver vazia, o novo monstro será o primeiro
+            self.inicio = novo_elemento
+        else:
+            # Percorre até o final da lista para adicionar o novo monstro
+            atual = self.inicio
+            while atual.proximo is not None:
+                atual = atual.proximo
+            atual.proximo = novo_elemento
+        
+        self.tamanho += 1  # Incrementa o tamanho da lista
+        print(f"Monstro {nome} adicionado ao armário!")
+        
+        # Exibir os monstros adicionados, isso é apenas um TESTE para ver se estava inserindo!!!!
+        #atual = self.inicio
+        #print("\nLista de monstros no armário:")
+        #while atual is not None:
+        #    monstro = atual.monstro
+        #    print(f"Nome: {monstro.nome}, Idade: {monstro.idade}, Origem: {monstro.origem}, Nível de Susto: {monstro.nivelSusto}")
+        #    atual = atual.proximo
         """
         essa função deve armazenar os monstros na estrutura de lista linear, como o prof pediu
         deve verificar se ainda há espaço para adicionar o monstro
@@ -81,7 +116,7 @@ while True:
         idade = int(input("Idade do monstro: "))
         origem = input("Origem do monstro: ")
         susto = int(input("Nível de susto (1 a 10): "))
-        armario.adicionar_monstro(nome, susto)
+        armario.adicionar_monstro(nome, idade, origem, susto)
     elif opcao == "2":
         nome = input("Nome do monstro a remover: ")
         #arrumar aqui pra perguntar se tem certeza
