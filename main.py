@@ -8,21 +8,11 @@ class Monstro:
     ex: self.nome = nome, armazena o nome do
     monstro na instância
     """
-    def __init__(self, nome, idade, origem, nivelSusto):
+    def __init__(self, nome, idade, origem, susto):
         self.nome = nome
         self.idade = idade
         self.origem = origem
-        self.nivelSusto = nivelSusto
-    
-    def definir_classificacao(self):
-        if self.nivelSusto <= 3:
-            return "Leve"
-        elif self.nivelSusto <= 6:
-            return "Médio"
-        elif self.nivelSusto <= 9:
-            return "Forte"
-        else:
-            return "Pânico"
+        self.susto = susto
 
 class ElementoMonstro:
     """
@@ -38,11 +28,18 @@ class ListaLinear:
         self.inicio = None  # Inicializa a lista como vazia
         self.tamanho = 0  # Define o tamanho inicial como zero
         
-    def adicionar_monstro(self, nome, idade, origem, nivelSusto):
+    def adicionar_monstro(self, nome, idade, origem, susto):
         """
-        Adiciona um novo monstro ao final da lista.
+        adri: essa função deve armazenar os monstros na estrutura de lista linear, como o prof pediu
+        deve verificar se ainda há espaço para adicionar o monstro
+        incrementa o tamanho da lista
+        as duas ultimas o python faz automatico, porém ele frizou em aula que é importante entendermos essa teoria
         """
-        novo_monstro = Monstro(nome, idade, origem, nivelSusto)  # Cria o objeto Monstro
+
+        """
+        fe: Adiciona um novo monstro ao final da lista.
+        """
+        novo_monstro = Monstro(nome, idade, origem, susto)  # Cria o objeto Monstro
         novo_elemento = ElementoMonstro(novo_monstro)  # Cria um elemento dentro da lista armário
         
         if self.inicio is None:
@@ -53,24 +50,19 @@ class ListaLinear:
             atual = self.inicio
             while atual.proximo is not None:
                 atual = atual.proximo
-            atual.proximo = novo_elemento
+            atual.proximo = novo_elemento # Adiciona o novo elemento ao final da lista
         
         self.tamanho += 1  # Incrementa o tamanho da lista
         print(f"Monstro {nome} adicionado ao armário!")
         
         # Exibir os monstros adicionados, isso é apenas um TESTE para ver se estava inserindo!!!!
-        #atual = self.inicio
-        #print("\nLista de monstros no armário:")
-        #while atual is not None:
-        #    monstro = atual.monstro
-        #    print(f"Nome: {monstro.nome}, Idade: {monstro.idade}, Origem: {monstro.origem}, Nível de Susto: {monstro.nivelSusto}")
-        #    atual = atual.proximo
-        """
-        essa função deve armazenar os monstros na estrutura de lista linear, como o prof pediu
-        deve verificar se ainda há espaço para adicionar o monstro
-        incrementa o tamanho da lista
-        as duas ultimas o python faz automatico, porém ele frizou em aula que é importante entendermos essa teoria
-        """
+        atual = self.inicio
+        print("\nLista de monstros no armário:")
+        while atual is not None:
+            monstro = atual.monstro
+            print(f"Nome: {monstro.nome}, Idade: {monstro.idade}, Origem: {monstro.origem}, Nível de Susto: {monstro.susto}")
+            atual = atual.proximo
+        
         
     def remover_monstro(self, nome):
         print("Inserir Função")
@@ -94,6 +86,7 @@ class ListaLinear:
         organizar os monstros na lista do maior para o menor nível de susto
         nn sei se pode usar o Quick Sort ou Bubble Sort, para reorganizar os monstros
         quando ordenar exibir uma mensagem indicando que a organização foi concluída
+        e exibir a lista organizada
         """
         
     def exibir_monstros(self):
